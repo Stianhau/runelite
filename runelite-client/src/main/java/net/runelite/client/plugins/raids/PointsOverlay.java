@@ -48,13 +48,13 @@ public class PointsOverlay extends Overlay {
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        if(!config.pointCounter() || !raidOverlayShown){
+        if(!config.pointCounter() || !raidOverlayShown || client.getVar(Varbits.RAID_PARTY_SIZE)==1){
             return null;
         }
         panelComponent.getChildren().clear();
         int totalPoints = client.getVar(Varbits.TOTAL_POINTS);
         int personalPoints = client.getVar(Varbits.PERSONAL_POINTS);
-
+        int teamPoints = totalPoints-personalPoints;
         Color color = Color.WHITE;
 
         if( totalPoints == 0){
@@ -65,20 +65,20 @@ public class PointsOverlay extends Overlay {
                     .build());
             return panelComponent.render(graphics);
         }
-        int partySize = client.getVar(Varbits.RAID_PARTY_SIZE);
+        int partySize = client.getVar(Varbits.RAID_PARTY_SIZE)-1;
         int avgpoints = totalPoints/partySize;
         double personalPercentage = personalPoints / (totalPoints / 100.0);
-        double avgPercentage = totalPoints/1.0;
-        avgPercentage = avgPercentage/partySize;
-        avgPercentage = (avgPercentage/totalPoints)*100.0;
+        double avgPercentage = ((teamPoints/(totalPoints/1.0))*100)/partySize; //totalPoints/1.0;
+        /*avgPercentage = avgPercentage/partySize;
+        avgPercentage = (avgPercentage/totalPoints)*100.0;*/
 
         panelComponent.getChildren().add(LineComponent.builder()
             .left("Average")
-            .right(Integer.toString(avgpoints))
+            .right(DECIMAL_FORMAT.format(avgPercentage)+"%")
             .rightColor(color)
             .build());
 
-        if(personalPoints>=avgpoints){
+        if(personalPercentage>=avgPercentage){
             color = Color.GREEN;
         }else {
             color = Color.RED;
