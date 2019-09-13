@@ -105,6 +105,9 @@ public class RaidsPlugin extends Plugin
 	private RaidsOverlay overlay;
 
 	@Inject
+	private PointsOverlay pointsOverlay;
+
+	@Inject
 	private LayoutSolver layoutSolver;
 
 	@Inject
@@ -155,6 +158,7 @@ public class RaidsPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
+		overlayManager.add(pointsOverlay);
 		updateLists();
 		clientThread.invokeLater(() -> checkRaidPresence(true));
 	}
@@ -163,6 +167,7 @@ public class RaidsPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
+		overlayManager.remove(pointsOverlay);
 		infoBoxManager.removeInfoBox(timer);
 		inRaidChambers = false;
 		raid = null;
@@ -288,6 +293,8 @@ public class RaidsPlugin extends Plugin
 				raid.updateLayout(layout);
 				RotationSolver.solve(raid.getCombatRooms());
 				overlay.setScoutOverlayShown(true);
+				pointsOverlay.setRaidOverlayShown(true);
+
 				sendRaidLayoutMessage();
 			}
 			else if (!config.scoutOverlayAtBank())
@@ -299,6 +306,7 @@ public class RaidsPlugin extends Plugin
 		// If we left party raid was started or we left raid
 		if (client.getVar(VarPlayer.IN_RAID_PARTY) == -1 && (!inRaidChambers || !config.scoutOverlayInRaid()))
 		{
+			pointsOverlay.setRaidOverlayShown(false);
 			overlay.setScoutOverlayShown(false);
 		}
 	}

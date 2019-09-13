@@ -162,4 +162,12 @@ public interface RaidsConfig extends Config
 	{
 		return true;
 	}
+
+	@ConfigItem(
+			position = 12,
+			keyName = "pointCounter",
+			name = "Counts raid points",
+			description = "Counts raids points and displays avg"
+	)
+	default boolean pointCounter() { return true; }
 }
