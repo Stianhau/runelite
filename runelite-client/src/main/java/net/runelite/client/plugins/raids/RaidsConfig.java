@@ -170,4 +170,11 @@ public interface RaidsConfig extends Config
 			description = "Counts raids points and displays avg"
 	)
 	default boolean pointCounter() { return true; }
+	@ConfigItem(
+			position = 13,
+			keyName = "alts",
+			name = "Alts in raid",
+			description = "To get more accurate percentage with alts in raids"
+	)
+	default int alts() { return 0; }
 }

@@ -61,8 +61,10 @@ public class PointsOverlay extends Overlay {
                     .build());
             return panelComponent.render(graphics);
         }
-        int partySize = client.getVar(Varbits.RAID_PARTY_SIZE)-1;
-
+        int partySize = client.getVar(Varbits.RAID_PARTY_SIZE)-1-config.alts();
+        if(partySize < 1){
+            return null;
+        }
         double personalPercentage = personalPoints / (totalPoints / 100.0);
         double avgPercentage = ((teamPoints/(totalPoints/1.0))*100)/partySize;
 
