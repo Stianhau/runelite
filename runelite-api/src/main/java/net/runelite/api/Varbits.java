@@ -492,6 +492,11 @@ public enum Varbits
 	QUEST_TAB(8168),
 
 	/**
+	 * Zulrah
+	 */
+	ZULRAH(5983),
+
+	/**
 	 * Explorer ring
 	 */
 	EXPLORER_RING_ALCHTYPE(5398),
@@ -500,6 +505,8 @@ public enum Varbits
 	EXPLORER_RING_RUNENERGY(4553),
 
 	WINTERTODT_TIMER(7980);
+
+
 
 	/**
 	 * The raw varbit ID.

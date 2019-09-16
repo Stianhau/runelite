@@ -1,6 +1,4 @@
 package net.runelite.client.plugins.raids;
-
-import com.sun.jna.platform.win32.OaIdl;
 import lombok.Setter;
 import net.runelite.api.Client;
 import net.runelite.api.Varbits;
@@ -10,8 +8,6 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
-import net.runelite.client.ui.overlay.components.TitleComponent;
-import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -66,11 +62,9 @@ public class PointsOverlay extends Overlay {
             return panelComponent.render(graphics);
         }
         int partySize = client.getVar(Varbits.RAID_PARTY_SIZE)-1;
-        int avgpoints = totalPoints/partySize;
+
         double personalPercentage = personalPoints / (totalPoints / 100.0);
-        double avgPercentage = ((teamPoints/(totalPoints/1.0))*100)/partySize; //totalPoints/1.0;
-        /*avgPercentage = avgPercentage/partySize;
-        avgPercentage = (avgPercentage/totalPoints)*100.0;*/
+        double avgPercentage = ((teamPoints/(totalPoints/1.0))*100)/partySize;
 
         panelComponent.getChildren().add(LineComponent.builder()
             .left("Average")
