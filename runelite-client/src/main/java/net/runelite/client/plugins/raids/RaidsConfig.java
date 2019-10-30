@@ -160,7 +160,7 @@ public interface RaidsConfig extends Config
 	)
 	default boolean layoutMessage()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
