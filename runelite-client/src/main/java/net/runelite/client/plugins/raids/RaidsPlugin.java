@@ -269,11 +269,13 @@ public class RaidsPlugin extends Plugin
 
 		if (force || inRaidChambers != setting)
 		{
+			//pointsOverlay.setRaidOverlayShown(true);
 			inRaidChambers = setting;
 			updateInfoBoxState();
 
 			if (inRaidChambers)
 			{
+				pointsOverlay.setRaidOverlayShown(true);
 				raid = buildRaid();
 
 				if (raid == null)
@@ -293,7 +295,7 @@ public class RaidsPlugin extends Plugin
 				raid.updateLayout(layout);
 				RotationSolver.solve(raid.getCombatRooms());
 				overlay.setScoutOverlayShown(true);
-				pointsOverlay.setRaidOverlayShown(true);
+
 
 				sendRaidLayoutMessage();
 			}
@@ -306,7 +308,7 @@ public class RaidsPlugin extends Plugin
 		// If we left party raid was started or we left raid
 		if (client.getVar(VarPlayer.IN_RAID_PARTY) == -1 && (!inRaidChambers || !config.scoutOverlayInRaid()))
 		{
-			pointsOverlay.setRaidOverlayShown(false);
+			//pointsOverlay.setRaidOverlayShown(false);
 			overlay.setScoutOverlayShown(false);
 		}
 	}
