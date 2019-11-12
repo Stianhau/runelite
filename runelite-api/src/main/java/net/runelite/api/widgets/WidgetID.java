@@ -147,6 +147,7 @@ public class WidgetID
 	public static final int SEED_VAULT_GROUP_ID = 631;
 	public static final int EXPLORERS_RING_ALCH_GROUP_ID = 483;
 	public static final int OPTIONS_GROUP_ID = 261;
+	public static final int GWD_KC_GROUP_ID = 406;
 
 	static class WorldMap
 	{
@@ -570,6 +571,13 @@ public class WidgetID
 			static final int ROLE_SPRITE = 11;
 			static final int ROLE = 12;
 		}
+		static class HLR
+		{
+			static final int TEAMMATE1 = 18;
+			static final int TEAMMATE2 = 22;
+			static final int TEAMMATE3 = 26;
+			static final int TEAMMATE4 = 30;
+		}
 		static final int CORRECT_STYLE = 3;
 		static final int CURRENT_WAVE_WIDGET = 4;
 		static final int CURRENT_WAVE = 5;
@@ -580,6 +588,11 @@ public class WidgetID
 		static final int ROLE_SPRITE = 10;
 		static final int ROLE = 11;
 		static final int REWARD_TEXT = 57;
+	}
+
+	static class GWD
+	{
+		static final int CONTAINER = 7;
 	}
 
 	static class LevelUp
